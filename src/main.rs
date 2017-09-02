@@ -16,9 +16,9 @@ fn main() {
 
 }
 
-fn parse_words (s: &String) -> Vec<String> {
+fn parse_words (s: &String) -> Vec<&str> {
 
-    let mut words: Vec<String> = Vec::new();
+    let mut words: Vec<&str> = Vec::new();
 
     //i will be a cursor that will hold the index to the first character of the next word
     let mut i = 0;
@@ -26,8 +26,10 @@ fn parse_words (s: &String) -> Vec<String> {
     let raw_bytes = s.as_bytes();
 
     while i < size {
-        finder::first_word();
-        i = i + 1;
+        let word_byte = finder::first_word(&raw_bytes[i..size]);
+        let word = str::from_utf8(word_byte).unwrap();
+        words.push(word);
+        i = i + word.len() + 1;
     }
     return words;
 }
