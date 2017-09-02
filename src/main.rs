@@ -1,5 +1,6 @@
 use std::env;
 use std::str;
+mod finder;
 
 fn main() {
 
@@ -25,6 +26,7 @@ fn parse_words (s: &String) -> Vec<String> {
     let raw_bytes = s.as_bytes();
 
     while i < size {
+        finder::first_word();
         i = i + 1;
     }
     return words;
