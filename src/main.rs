@@ -12,7 +12,7 @@ fn main() {
     }
 
     let out = parse_words(&args[1]);
-    println!("Out: {}", out.len());
+    output(out);
 
 }
 
@@ -32,4 +32,10 @@ fn parse_words (s: &String) -> Vec<&str> {
         i = i + word.len() + 1;
     }
     return words;
+}
+
+fn output(words: Vec<&str>) {
+    for (j, ref word) in words.iter().enumerate() {
+        println!("{},{},{}", j+1, word, word.len());
+    }
 }
