@@ -13,7 +13,7 @@ pub fn parse_words (s: &String) -> Vec<&str> {
         let word_byte = first_word(&raw_bytes[i..size]);
         if is_valid(&word_byte) {
             let word = str::from_utf8(word_byte).unwrap();
-            words.push(word);
+            words.push(&word);
         }
         i = i + word_byte.len() + 1;
     }
@@ -26,7 +26,8 @@ fn first_word(s: &[u8]) -> &[u8] {
     let mut start = 0;
 
     for (i, &item) in s.iter().enumerate() {
-        if item == b' ' || item == b',' || item == b'.' || item == b'?' || item == b'!' {
+        if item == b' ' || item == b',' || item == b'.' || item == b'?'
+            || item == b'!' || item == b'\n'  || item == 13 {
             if i == 0 {
                 start = 1;
             } else {
@@ -39,7 +40,8 @@ fn first_word(s: &[u8]) -> &[u8] {
 }
 
 fn is_valid(c: &[u8]) -> bool {
-    if *c == [b','] || *c == [b'.'] || *c == [b'!'] || *c == [b'?'] || *c == [b' '] || c.len() == 0{
+    if *c == [b','] || *c == [b'.'] || *c == [b'!'] || *c == [b'?']
+        || *c == [b' '] || *c == [b'\n'] ||c.len() == 0 {
         return false;
     }
     else {
