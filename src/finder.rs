@@ -11,10 +11,13 @@ pub fn parse_words (s: &String) -> Vec<&str> {
 
     while i < size {
         let word_byte = first_word(&raw_bytes[i..size]);
-        let word = str::from_utf8(word_byte).unwrap();
-        words.push(word);
-        i = i + word.len() + 1;
+        if is_valid(&word_byte) {
+            let word = str::from_utf8(word_byte).unwrap();
+            words.push(word);
+        }
+        i = i + word_byte.len() + 1;
     }
+
     return words;
 }
 
@@ -33,4 +36,13 @@ fn first_word(s: &[u8]) -> &[u8] {
     }
 
     return &s[start..]
+}
+
+fn is_valid(c: &[u8]) -> bool {
+    if *c == [b','] || *c == [b'.'] || *c == [b'!'] || *c == [b'?'] || *c == [b' '] || c.len() == 0{
+        return false;
+    }
+    else {
+        return true;
+    }
 }
