@@ -1,4 +1,5 @@
 use std::env;
+use std::str;
 
 fn main() {
 
@@ -8,4 +9,13 @@ fn main() {
         println!(" Usage: cargo run <string> ");
         return;
     }
+
+    let out = parse_words(&args[1]);
+    println!("Out: {}", out.len());
+
+}
+
+fn parse_words (s: &String) -> Vec<String> {
+    let mut words: Vec<String> = Vec::new();
+    return words;
 }
