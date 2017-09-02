@@ -1,0 +1,6 @@
+[package]
+name = "word_parser"
+version = "0.1.0"
+authors = ["Chris Klaoudianis <chris.klaou@gmail.com>"]
+
+[dependencies]
